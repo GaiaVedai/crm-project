@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import './App.css';
+import './styles/App.css';
 import Navbar from './components/Navbar';
 import Clients from './components/Clients/Clients';
 import Data from './data.json';
@@ -9,8 +9,7 @@ import Data from './data.json';
 class App extends Component {
   constructor() {
     super()
-    const data = {...Data}
-    this.state = data
+    this.state = {Data} 
   }
   render() {
 
@@ -19,7 +18,7 @@ class App extends Component {
         <div className="app">
           <div className="container">
           <Navbar />
-          <Route path="/clients" exact render={()=><Clients data={this.state}/>} />
+          <Route path="/clients" exact render={()=><Clients data={Data}/>} />
 
             {/* <Client /> */}
           </div>
