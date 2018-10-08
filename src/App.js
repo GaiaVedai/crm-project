@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import logo from './logo.svg';
 import './App.css';
 import Navbar from './components/Navbar';
-import Client from './components/ClientInfo';
+import Clients from './components/Clients/Clients';
+import Data from './data.json';
 
 
 class App extends Component {
+  constructor() {
+    super()
+    const data = {...Data}
+    this.state = data
+  }
   render() {
 
     return (
@@ -14,13 +19,12 @@ class App extends Component {
         <div className="app">
           <div className="container">
           <Navbar />
-          {/* <Route path="/clients" exact component={} /> */}
+          <Route path="/clients" exact render={()=><Clients data={this.state}/>} />
 
             {/* <Client /> */}
           </div>
 
           {/* Routes go here v */}
-          {/* <Route path="/" component={Navbar} /> */}
 
 
           {/* <Route path="/client" exact component={Client} />

@@ -6,13 +6,13 @@ class Navbar extends Component {
         return (
             <div className="navBar">
                 <Link to="/Clients">
-                    <button className="tablinks clients" onClick="show Client Data component">Clients</button>
+                    <button className="tablinks clients">Clients</button>
                 </Link>
                 <Link to="/Actions">
-                <button className="tablinks actions" onClick="openCity(event, 'Actions')">Actions</button>
+                <button className="tablinks actions">Actions</button>
                 </Link>
                 <Link to="/Analytics">
-                <button className="tablinks analytics" onClick="openCity(event, 'Analytics')">Analytics</button>
+                <button className="tablinks analytics">Analytics</button>
                 </Link>
             </div>
 
