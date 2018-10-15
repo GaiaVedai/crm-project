@@ -4,29 +4,24 @@ import React, { Component } from 'react';
 
 
 class ClientBox extends Component {
-    splitName = () => {
-        return this.props.name.split(' ');
-        // console.log(fullName[0])
-
+    
+    editClient = () => {
+        this.props.changeEditStatus(this.props)
     }
 
     render() {
-        let fullName = this.splitName();
-        let firstName = fullName[0]
-        let sureName = fullName[1]
+       
         return (
+            <div className="divTableRow" onClick={this.editClient()}>
+                <div className="first-name divTableCell">{this.props.firstName}</div>
+                <div className="last-name divTableCell">{this.props.sureName}</div>
+                <div className="country divTableCell">{this.props.country}</div>
+                <div className="divTableCell">{this.props.first}</div>
+                <div className="divTableCell">{this.props.mailType}</div>
+                <div className="divTableCell">{this.props.sold}</div>
+                <div className="divTableCell">{this.props.owner}</div>
+            </div>
 
-            
-                    <div className="divTableRow">
-                        <div className="first-name divTableCell" >{ firstName }</div>
-                        <div className="last-name divTableCell">{ sureName }</div>
-                        <div className="country divTableCell">{ this.props.country }</div>
-                        <div className="divTableCell">{ this.props.first }</div>
-                        <div className="divTableCell">{ this.props.mailType}</div>
-                        <div className="divTableCell">{ this.props.sold }</div>
-                        <div className="divTableCell">{ this.props.owner }</div>
-                    </div>
-            
 
         )
     }

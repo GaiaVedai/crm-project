@@ -9,7 +9,7 @@ import Data from './data.json';
 class App extends Component {
   constructor() {
     super()
-    this.state = {Data} 
+    this.state = Data
   }
   render() {
 
@@ -19,6 +19,7 @@ class App extends Component {
           <div className="container">
           <Navbar />
           <Route path="/clients" exact render={()=><Clients data={Data}/>} />
+          {/* <Route path="/Actions" exact render={()=><Actions data={Data}/>} /> */}
 
             {/* <Client /> */}
           </div>
