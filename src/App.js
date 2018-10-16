@@ -9,8 +9,11 @@ import Data from './data.json';
 class App extends Component {
   constructor() {
     super()
+    // const data =
     this.state = Data
+      // data: data
   }
+
   render() {
 
     return (
@@ -18,7 +21,7 @@ class App extends Component {
         <div className="app">
           <div className="container">
           <Navbar />
-          <Route path="/clients" exact render={()=><Clients data={Data}/>} />
+          <Route path="/clients" exact render={()=><Clients data={this.state} />} />
           {/* <Route path="/Actions" exact render={()=><Actions data={Data}/>} /> */}
 
             {/* <Client /> */}
