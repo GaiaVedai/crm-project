@@ -37,10 +37,14 @@ class Clients extends Component {
         console.log('hi')
         if(this.state.editStatus){
             console.log(this.state)
-            return <EditBox userDetails={this.state.currentEdit}/>
+            return <EditBox userDetails={this.state.currentEdit} hideEditDialog={this.hideEditDialog}/>
         }
         return
     }
+
+    hideEditDialog = (properties) =>
+    this.setState({editStatus: false})
+    
 
     render() {
 
