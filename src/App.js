@@ -3,16 +3,21 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './styles/App.css';
 import Navbar from './components/Navbar';
 import Clients from './components/Clients/Clients';
+import Actions from './components/Actions/Actions';
 import Data from './data.json';
 
 
 class App extends Component {
   constructor() {
     super()
-    // const data =
-    this.state = Data
-      // data: data
+    this.state = {
+      data: Data
   }
+}
+
+  updateClientDetails = (newState) => {
+    this.setState ({data:newState})
+  } 
 
   render() {
 
@@ -21,8 +26,8 @@ class App extends Component {
         <div className="app">
           <div className="container">
           <Navbar />
-          <Route path="/clients" exact render={()=><Clients data={this.state} />} />
-          {/* <Route path="/Actions" exact render={()=><Actions data={Data}/>} /> */}
+          <Route path="/clients" exact render={()=><Clients data={this.state.data} updateClientDetails={this.updateClientDetails}/>} />
+          <Route path="/Actions" exact render={()=><Actions clients={this.state.data}/>} />
 
             {/* <Client /> */}
           </div>

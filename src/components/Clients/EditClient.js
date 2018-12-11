@@ -7,18 +7,20 @@ class EditClient extends Component {
 
     constructor(props) {
         super(props);
-        const { firstName, surName, country } = this.props.userDetails
+        const { firstName, surName, country,id } = this.props.userDetails
         this.state = {
-            firstName: firstName,
-            surName: surName,
-            country: country
+            firstName,
+            surName,
+            country,
+            id
         };
 
-        this.handleInputChange = this.handleInputChange.bind(this);
+        // this.handleInputChange = this.handleInputChange.bind(this);
+        // this.updateClientDetails = this.updateClientDetails.bind(this)
     }
 
 
-    handleInputChange(event) {
+    handleInputChange = (event)=> {
         const target = event.target;
         const value = target.value;
         const name = target.name;
@@ -29,7 +31,8 @@ class EditClient extends Component {
     }
 
     updateClientDetails =() => {
-
+        this.props.updateClientDetails(this.state)
+        this.hideEditDialog()
     }
 
     hideEditDialog = () => {
@@ -38,7 +41,6 @@ class EditClient extends Component {
 
 
     render() {
-        console.log(this.props.userDetails)
         return (
             <div className="editClient">
                 <form className="form-window">
@@ -49,7 +51,7 @@ class EditClient extends Component {
                     <input type="text" name="surName" className="edit surname" value={this.state.surName} onChange={this.handleInputChange} /> <br />
                     <label htmlFor="country">Country: </label>
                     <input type="text" name="country" className="edit country" value={this.state.country} onChange={this.handleInputChange} /> <br />
-                    <button type="button" className="submit button" onClick={updateClientDetails}>Change</button>
+                    <button type="button" className="submit button" onClick={this.updateClientDetails}>Change</button>
                     <button type="button" className="cancel button" onClick={this.hideEditDialog}>Cancel</button>
                 </form>
             </div>

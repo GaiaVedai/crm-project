@@ -9,7 +9,7 @@ class Clients extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            editStatus:false
+            editStatus: false
         }
     }
     splitName = (client) => {
@@ -19,32 +19,45 @@ class Clients extends Component {
     generateClientList = () => {
         //for each client create a new line with info
         let clients = this.props.data
-        // console.log(this.props.data)
         return clients.map(client => {
             let fullName = this.splitName(client);
             let firstName = fullName[0]
             let surName = fullName[1]
-            return (<ClientBox key={client._id} firstName={firstName} surName={surName} mailType={client.emailType} sold={client.sold ? "V" : "-"} owner={client.owner} first={client.firstContact} country={client.country}  changeEditStatus={this.changeEditStatus} />)
+            return (<ClientBox key={client._id} id={client._id} firstName={firstName} surName={surName} mailType={client.emailType} sold={client.sold ? "V" : "-"} owner={client.owner} first={client.firstContact} country={client.country} changeEditStatus={this.changeEditStatus} />)
         })
     }
 
     changeEditStatus = (properties) => {
-        console.log('bla')
-         this.setState({ editStatus: true, currentEdit:properties })
+        this.setState({ editStatus: true, currentEdit: properties })
     }
 
     showEditDialog = () => {
-        console.log('hi')
-        if(this.state.editStatus){
-            console.log(this.state)
-            return <EditBox userDetails={this.state.currentEdit} hideEditDialog={this.hideEditDialog}/>
+        if (this.state.editStatus) {
+            return <EditBox userDetails={this.state.currentEdit} hideEditDialog={this.hideEditDialog} updateClientDetails={this.updateClientDetails} />
         }
         return
     }
 
+    updateClientDetails = (updatedClient) => {   
+        
+        let clientList = this.props.data
+        const newData =  clientList.map(client => {
+            if (client._id === updatedClient.id) {                                
+                return {
+                    ...client,
+                    name: updatedClient.firstName.concat(' ', updatedClient.surName),
+                    country: updatedClient.country
+                }
+            }
+            return client
+        })
+        // this.setState({ data: newData })
+        this.props.updateClientDetails(newData)
+    }
+
     hideEditDialog = (properties) =>
-    this.setState({editStatus: false})
-    
+        this.setState({ editStatus: false })
+
 
     render() {
 
